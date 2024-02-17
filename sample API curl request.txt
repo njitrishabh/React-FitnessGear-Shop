@@ -1,0 +1,1 @@
+curl --location 'http://localhost:8080/search-products?productName=jump&retailerName=RetailerX&brandName=GoodLife&minPrice=20.00&maxPrice=24.00'

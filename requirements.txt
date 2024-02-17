@@ -1,0 +1,70 @@
+I have decided to create an application which streamlines the process of finding affordable fitness gear and equipment. 
+The system will collect and store data related to fitness-related gear and equipment, including product details, prices and retailer information in a SQL database. 
+The first function is a search bar that will allow the user to search for their desired gear as well as numerous attributes (brand, price, retailer) to further filter their search results. 
+
+Once an item is selected, a description containing instructions informing the user on how to use the gear will be displayed. 
+A second function is the user will be able to enter their personal information (name, email) in order to procure weekly newsletters about gear deals that week. 
+User can also create a profile or login account. 
+Another function that will be available is for the user to enter gear and equipment that are not in the database for other users to use.
+The fourth function includes the ability for users to favorite a specific product.
+
+
+1. Collect : manually go to the website then collect these information in our local sql database.
+10 distinct items: 
+Each item has 5 retailers:
+Example: suspension gear
+a. product name
+b. product description/details
+c. how to use the gear
+d. price - 5 different prices
+e. retailer information: multiple retailers/online stores - 5 different retailer names
+f. product image
+e. brand -  5 different brand names
+
+SQL Tables:
+products: product_id (Primary Key), name, details, howToUse, image
+retailers: reatiler_id (Primary Key), name
+brands: brand_id (Primary Key), name
+price: price_id (Primary Key), price DECIMAL(10, 2), product_id (Fkey), reatiler_id(FKey), brand_id(brand_id)
+
+2. Create an API to filter the search results from the database (based on name, brand, price, retailer)
+
+3. Search bar in UI: (to search by item name) - Dropdown
+
+4. Filter in UI: (To filter the above searched item by brand, price, retailer)
+price filter: would be a range selction bar
+
+5. after searching an item -> show the "how to use the gear" column from the db for that item
+
+6. a. if a user search result is not found, then show a button to insert those details.
+    b. If clicked on this button then, show a page to insert item name, brand, price, retailer. (all are mandatory fields)
+    c. make an api call and insert in db.
+
+7. user login-logout
+
+8. a. To accept user name and email as input and only then set below.
+    b. Create a Deals table in the db, add user-emails in a column: and write a scheduler to send emails with a new content from deals table in the db.
+    c. opt-out of email feature: check if this email addres
+
+9. user can mark a product as favorite.
+
+
+#2 - #6 these features are available for non-loggedIn users
+#7 - #9 is only for logged in users
+
+Feb 26 : Sprint 1, #1 - #4
+Mar 15: spritn 2, #5 - #7
+Apr 7: sprint 3, #8 , #9
+
+1st table for Product name, Description, image and how to use
+2nd table for Product prices
+3rd table for product retailer
+4th table for product brands
+
+1 GET API with 4 query params.
+productName: Required
+brand: optional
+price: optional
+retailer: optional
+
+# (Front-end) UI react/angular make HTTP -> (middleware) APIs HTTPS call -> (backend) fetch or write items in SQL DB
