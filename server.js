@@ -79,7 +79,7 @@ app.get('/search-products', (req, res) => {
 app.get('/product-names', (req, res) => {
 
     let sql = `
-        SELECT products.name
+        SELECT products.name as label
         FROM products`;
 
     connection.query(sql, (err, results) => {

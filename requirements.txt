@@ -29,7 +29,7 @@ price: price_id (Primary Key), price DECIMAL(10, 2), product_id (Fkey), reatiler
 
 2. Create an API to filter the search results from the database (based on name, brand, price, retailer)
 
-3. Search bar in UI: (to search by item name) - Dropdown
+3. Search bar in UI: (to search by item name)
 
 4. Filter in UI: (To filter the above searched item by brand, price, retailer)
 price filter: would be a range selction bar

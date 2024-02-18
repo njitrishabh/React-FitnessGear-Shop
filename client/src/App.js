@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
-const Home = lazy(() => import('./pages/Home'));
+const Home = lazy(() => import('./pages/home/Home'));
 const NoMatch = lazy(() => import('./components/NoMatch'));
 
 const App = () => {
