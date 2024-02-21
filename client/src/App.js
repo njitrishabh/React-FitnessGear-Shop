@@ -1,19 +1,16 @@
-import { lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
-const Home = lazy(() => import('./pages/home/Home'));
-const NoMatch = lazy(() => import('./components/NoMatch'));
+import Router from './routes';
+import { BrowserRouter } from 'react-router-dom';
 
 const App = () => {
     return (
         <>
+            <h1>Hello world! I am using React</h1>
             <NavBar />
-            <Suspense fallback={<div className="container">Loading...</div>}>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="*" element={<NoMatch />} />
-                </Routes>
-            </Suspense>
+            <BrowserRouter>
+                <Router />
+            </BrowserRouter>
+
         </>
     );
 };
