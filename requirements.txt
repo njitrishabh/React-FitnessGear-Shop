@@ -74,3 +74,8 @@ npm install --save-dev eslint-plugin-jest
 npm i babel-jest @babel/preset-env
 npm i identity-obj-proxy
 npm i whatwg-fetch
+npm install --save-dev jest-fetch-mock
+npm install --save @testing-library/user-event msw
+npm install cypress
+npx cypress open
+npx cypress run

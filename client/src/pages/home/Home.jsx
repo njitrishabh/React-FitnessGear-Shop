@@ -69,6 +69,7 @@ const Home = () => {
     const handleSubmit = async () => {
         const response = await fetch(`http://localhost:8080/search-products?productName=${selectedProductName.label}&brandName=${selectedBrand?.value || ''}&retailerName=${selectedRetailer?.value || ''}&minPrice=${minPrice}&maxPrice=${maxPrice}`);
         const data = await response.json();
+        console.log(data);
         setSearchResult(data);
     }
 
@@ -78,27 +79,32 @@ const Home = () => {
             <div className="search-filters">
                 <div className="search-text">
                     <h1>Product Search</h1>
-                    <label>Product name:</label>
+                    <label htmlFor="product-name-typeahead">Product name:</label>
                     <AsyncTypeahead
                         id="product-name-typeahead"
                         options={productNames}
                         onChange={handleProductNameChange}
                         placeholder="Search for a product..."
                         onSearch={handleSearch}
+                        inputProps={{ "title": "Product name:" }}
                     />
                 </div>
                 <div className="brand-dropdown">
-                    <label>Brand:</label>
-                    <Select
-                        options={brands.map((brand) => ({ value: brand.brand, label: brand.brand }))}
-                        value={selectedBrand}
-                        onChange={(selectedOption) => setSelectedBrand(selectedOption)}
-                        isClearable
-                        isSearchable={false}
-                    />
+                    <label htmlFor="BrandName">Brand:</label>
+                    <div data-testid="my-select-component">
+                        <Select
+                            options={brands.map((brand) => ({ value: brand.brand, label: brand.brand }))}
+                            value={selectedBrand}
+                            onChange={(selectedOption) => setSelectedBrand(selectedOption)}
+                            isClearable
+                            isSearchable={false}
+                            placeholder="Select Brand..."
+                            id="brandnames-id"
+                        />
+                    </div>
                 </div>
                 <div className="retailer-dropdown">
-                    <label>Retailer:</label>
+                    <label htmlFor="Retailer">Retailer:</label>
                     <Select
                         options={retailers.map((retailer) => ({ value: retailer.retailer, label: retailer.retailer }))}
                         value={selectedRetailer}
@@ -108,11 +114,11 @@ const Home = () => {
                     />
                 </div>
                 <div className="min-price">
-                    <label>Min Price:</label>
+                    <label htmlFor="MinPrice">Min Price:</label>
                     <input type="number" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} />
                 </div>
                 <div className="max-price">
-                    <label>Max Price:</label>
+                    <label htmlFor="MaxPrice">Max Price:</label>
                     <input type="number" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} />
                 </div>
                 <div className="submit-button">

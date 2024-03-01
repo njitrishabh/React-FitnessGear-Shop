@@ -10,4 +10,8 @@ module.exports = {
     },
     testEnvironment: 'jsdom',
     setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+    globals: { TextEncoder: TextEncoder, TextDecoder: TextDecoder },
+    testEnvironmentOptions: {
+        customExportConditions: [''],
+    },
 }
