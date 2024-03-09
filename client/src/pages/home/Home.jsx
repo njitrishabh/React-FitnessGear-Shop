@@ -18,6 +18,7 @@ const Home = () => {
     const [minPrice, setMinPrice] = useState('');
     const [maxPrice, setMaxPrice] = useState('');
     const [searchResult, setSearchResult] = useState([]);
+    const [showContent, setShowContent] = useState(false);
 
     const handleProductData = async () => {
         const response = await fetch('http://localhost:8080/product-names');
@@ -38,7 +39,7 @@ const Home = () => {
     };
 
     const handleSearch = useCallback((q) => {
-        console.log('handleSearch');
+        // console.log('handleSearch');
     }, []);
 
     const handleDependentFiltersData = async () => {
@@ -69,8 +70,8 @@ const Home = () => {
     const handleSubmit = async () => {
         const response = await fetch(`http://localhost:8080/search-products?productName=${selectedProductName.label}&brandName=${selectedBrand?.value || ''}&retailerName=${selectedRetailer?.value || ''}&minPrice=${minPrice}&maxPrice=${maxPrice}`);
         const data = await response.json();
-        console.log(data);
         setSearchResult(data);
+        setShowContent(true);
     }
 
 
@@ -127,7 +128,7 @@ const Home = () => {
 
             </div>
             <div className="search-result">
-                <SearchResultPage searchOutput={searchResult} />
+                <SearchResultPage searchOutput={searchResult} showContent={showContent} />
             </div>
         </>
     );

@@ -1,14 +1,5 @@
--- Create Table products (
---     product_id INT Primary Key,
---     name varchar(255),
---     details TEXT,
---     howToUse TEXT,
---     image varchar(255)
--- );
-
--- products: 
-Insert into products values
-(1, 'Rubber Hex Dumbbells 10lb', 'Dumbell featuring a  chrome-finished contoured ergonomic handle with knurlings for an optimal grip.
+Insert into products (name, details, howToUse, image) values
+('Rubber Hex Dumbbells 10lb', 'Dumbell featuring a  chrome-finished contoured ergonomic handle with knurlings for an optimal grip.
 The hexagonal shape prevents rolling, ensuring a stable and safe workout environment. 
 The rubber coating minimizes noise, protects flooring, and extends the life of the dumbbells, making them a smart investment for any fitness enthusiast.
 ', 'Selecting the Right Weight:
@@ -51,8 +42,8 @@ Maintenance:
 Periodically check the rubber coating for any signs of damage. If you notice any issues, consider replacing the dumbbell to ensure safety.', 'https://media-www.canadiantire.ca/product/playing/exercise/exercise-accessories/1841075/ziva-performance-hexagon-steel-dumbbell-15lb-313404c0-20b7-489d-bf32-05c6ab6efecf-jpgrendition.jpg?imdensity=1&imwidth=1244&impolicy=gZoom');
 
 
-Insert into products values
-(2, 'boxing bag', 'The perfect heavy bag for combat sports practitioners, this bag is constructed of a durable black vinyl shell, heavy-duty chains, web straps, and filled with fibers. 70 lbs. - 13"" Diameter x 40"" Tall / 100 lbs. - 13"" Diameter x 42"" Tal. A quick way calculate what heavy bag is best for you is take your weight, divide by two, and round up to the nearest heavy bag weight. Oversized shipping rates apply.
+Insert into products (name, details, howToUse, image) values
+('boxing bag', 'The perfect heavy bag for combat sports practitioners, this bag is constructed of a durable black vinyl shell, heavy-duty chains, web straps, and filled with fibers. 70 lbs. - 13"" Diameter x 40"" Tall / 100 lbs. - 13"" Diameter x 42"" Tal. A quick way calculate what heavy bag is best for you is take your weight, divide by two, and round up to the nearest heavy bag weight. Oversized shipping rates apply.
 ', 'Safety first:
 
 Make sure the area around the bag is clear of any obstacles.
@@ -97,8 +88,8 @@ Cool down:
 
 After your session, cool down with stretching to improve flexibility and reduce muscle soreness.', 'https://media-www.canadiantire.ca/product/playing/exercise/exercise-accessories/0845907/everlast-70lb-everstrike-heavy-bag-53c27fb2-8f95-4ceb-9b0e-6d1fc8efc7cd-jpgrendition.jpg?imdensity=1&imwidth=1244&impolicy=gZoom');
 
-Insert into products values
-(3, 'Strength Resistance Bands', 'When standard squats and leg extensions are becoming too mundane, look to Everlasts Medium Power Band. Dont be fooled by the simple construction; these lightweight and portable bands engage the leg, thigh and buttocks muscles for enhanced strength, endurance, coordination and flexibility. Made with natural latex rubber, this bands dynamic design helps to increase strength and stability. Medium band provides 48-75lb (22-34kg) of resistance.', 'Select the Right Resistance Band:
+Insert into products (name, details, howToUse, image) values
+('Strength Resistance Bands', 'When standard squats and leg extensions are becoming too mundane, look to Everlasts Medium Power Band. Dont be fooled by the simple construction; these lightweight and portable bands engage the leg, thigh and buttocks muscles for enhanced strength, endurance, coordination and flexibility. Made with natural latex rubber, this bands dynamic design helps to increase strength and stability. Medium band provides 48-75lb (22-34kg) of resistance.', 'Select the Right Resistance Band:
 
 Resistance bands come in different colors or with varying levels of resistance. Choose a band that provides enough resistance to challenge your muscles without causing strain.
 If you are a beginner, start with a lighter resistance band and gradually progress to higher resistance levels.
@@ -135,8 +126,8 @@ Cool Down and Stretch:
 
 After your workout, cool down with static stretching to improve flexibility and reduce muscle tightness.', 'https://media-www.canadiantire.ca/product/playing/exercise/exercise-accessories/1841250/everlast-power-band-medium-f44e8277-78a1-49f7-be2a-ff86343e2345-jpgrendition.jpg?imdensity=1&imwidth=1244&impolicy=gZoom');
 
-Insert into products values
-(4, 'exercise bike', 'Exercise Bike is an effective cardio exercise machine for home use. This exercise bike has an adjustable seat to accommodate various heights and support proper posture during workouts. The bike features 8 levels of magnetic resistance that can be adjusted with the turn of a knob to tailor your training intensity. The easy-to-read console displays helpful workout metrics including time, speed, distance, odometer reading, and calories burned. Sturdy and stable, the indoor cycling exercise bike provides an efficient cardiovascular workout right in your own home.', '"Adjust the Bike:
+Insert into products (name, details, howToUse, image) values
+('exercise bike', 'Exercise Bike is an effective cardio exercise machine for home use. This exercise bike has an adjustable seat to accommodate various heights and support proper posture during workouts. The bike features 8 levels of magnetic resistance that can be adjusted with the turn of a knob to tailor your training intensity. The easy-to-read console displays helpful workout metrics including time, speed, distance, odometer reading, and calories burned. Sturdy and stable, the indoor cycling exercise bike provides an efficient cardiovascular workout right in your own home.', '"Adjust the Bike:
 
 Before getting on the bike, adjust the seat height to a level where your feet can comfortably reach the pedals with a slight bend in your knees.
 Set the handlebars at a height that allows you to maintain a comfortable and upright posture.
@@ -156,8 +147,8 @@ Adjust Resistance:
 Most exercise bikes have a resistance knob or buttons that allow you to increase or decrease the difficulty of your workout.
 Start with a comfortable resistance level and gradually increase it as your fitness improves."', 'https://media-www.canadiantire.ca/product/playing/exercise/exercise-equipment/1840980/marcy-ns-714u-bike-797b8557-80a1-4ef0-a429-a87539f64ec2.png?imdensity=1&imwidth=1244&impolicy=gZoom');
 
-Insert into products values
-(5, 'jump ropes', 'Shaking up your workouts with different techniques can help you stay invested, all while burning calories. Warm up or add to your cardio using Everlasts 9.5 ft Leather Jump Rope. Made using genuine leather, this jump rope has a length of 9.5 feet (2.9 m), making it ideal for all fitness levels and all heights. It features a precision ball bearing rotation for increased speed. The contoured and polished wood handles design provides maximum grip during your workout. This durable, lightweight and portable jump rope is excellent for cross overs, side jumps, double-overs, skips and other combinations that you can integrate into your workout. Step up your regularly scheduled cardio with a simple yet effective calorie-burner.', '"Choose the Right Rope:
+Insert into products (name, details, howToUse, image) values
+('jump ropes', 'Shaking up your workouts with different techniques can help you stay invested, all while burning calories. Warm up or add to your cardio using Everlasts 9.5 ft Leather Jump Rope. Made using genuine leather, this jump rope has a length of 9.5 feet (2.9 m), making it ideal for all fitness levels and all heights. It features a precision ball bearing rotation for increased speed. The contoured and polished wood handles design provides maximum grip during your workout. This durable, lightweight and portable jump rope is excellent for cross overs, side jumps, double-overs, skips and other combinations that you can integrate into your workout. Step up your regularly scheduled cardio with a simple yet effective calorie-burner.', '"Choose the Right Rope:
 
 Ensure your jump rope is the appropriate length for your height. Stand on the middle of the rope and pull the handles upward – they should reach your armpits.
 Select the Right Surface:

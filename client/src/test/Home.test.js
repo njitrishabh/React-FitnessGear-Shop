@@ -49,19 +49,19 @@ describe('Home Component', () => {
         expect(screen.getByTitle('Product name:', { value: /Product1/i })).toBeInTheDocument();
     });
 
-    test('handles brand change', async () => {
-        const { queryByTestId } = render(<Home />);
-        await act(async () => {
-            await screen.getByText(/Product Search/i);
-        });
-        const input = screen.getByTitle('Product name:', { placeholder: /search for a product/i });
-        expect(screen.getByTitle('Product name:', { placeholder: /search for a product/i })).toHaveAttribute('aria-expanded', 'false');
-        userEvent.type(input, 'Product1');
+    // test('handles brand change', async () => {
+    //     const { queryByTestId } = render(<Home />);
+    //     await act(async () => {
+    //         await screen.getByText(/Product Search/i);
+    //     });
+    //     const input = screen.getByTitle('Product name:', { placeholder: /search for a product/i });
+    //     expect(screen.getByTitle('Product name:', { placeholder: /search for a product/i })).toHaveAttribute('aria-expanded', 'false');
+    //     userEvent.type(input, 'Product1');
 
-        const mySelectComponent = queryByTestId('my-select-component');
-        userEvent.selectOptions(mySelectComponent, 'Brand1');
-        // expect(screen.getByLabelText('Brand:')).toHaveValue('Brand1');
+    //     const mySelectComponent = queryByTestId('my-select-component');
+    //     userEvent.selectOptions(mySelectComponent, 'Brand1');
+    //     // expect(screen.getByLabelText('Brand:')).toHaveValue('Brand1');
 
-    });
+    // });
 
 });

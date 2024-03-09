@@ -1,0 +1,8 @@
+.flex-parent {
+    display: flex;
+    margin: 40px;
+}
+
+.right-child {
+    padding: 20px;
+}

@@ -93,5 +93,32 @@ app.get('/product-names', (req, res) => {
     });
 });
 
+app.post('/api/submit-form', async (req, res) => {
+    const formData = req.body;
+    try {
+        let statements = [
+            `Insert into retailers (name) values ('${formData.retailerName}');`,
+            `Insert into brands (name) values ('${formData.brandName}');`,
+            `Insert into products (name, details, howToUse, image) values ('${formData.productName}', '${formData.productDetails}', '${formData.productHowtouse}', '${formData.productImage}');`,
+            `INSERT into prices (price, product_id, brand_id, retailer_id) values ( '${formData.price}',
+			(SELECT products.product_id from products where products.name LIKE '%${formData.productName}%'),
+			(SELECT brands.brand_id from brands where brands.name LIKE '%${formData.brandName}%'),
+			(SELECT retailers.retailer_id from retailers where retailers.name LIKE '%${formData.retailerName}%')
+			);`
+        ]
+
+        for (const statement of statements) {
+            await connection.execute(statement);
+        }
+
+        res.status(200).json({ success: true, message: 'Form submitted successfully!' });
+
+    } catch (error) {
+        console.log('Error:', error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+
+});
+
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
