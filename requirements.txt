@@ -79,3 +79,4 @@ npm install --save @testing-library/user-event msw
 npm install cypress
 npx cypress open
 npx cypress run
+npm install axios

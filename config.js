@@ -2,7 +2,7 @@ let config = {
   host: 'localhost',
   user: 'root',
   password: 'password',
-  database: 'fitness'
+  database: 'fitness',
 };
 
 export default config;

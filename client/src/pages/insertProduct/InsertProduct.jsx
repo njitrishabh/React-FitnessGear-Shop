@@ -26,7 +26,17 @@ const InsertProduct = () => {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:8080/api/submit-form', formData);
+            alert("submitted");
             console.log(response.data);
+            setFormData({
+                productName: '',
+                productDetails: '',
+                productHowtouse: '',
+                productImage: '',
+                brandName: '',
+                retailerName: '',
+                price: '',
+            });
         } catch (error) {
             console.error('Error submitting form:', error.message);
         }
@@ -56,10 +66,10 @@ const InsertProduct = () => {
                     <input type="text" name="brandName" value={formData.brandName} onChange={handleChange}></input>
                 </label>
                 <br />
-                <lable>
+                <label>
                     Retailer:
                     <input type="text" name="retailerName" value={formData.retailerName} onChange={handleChange}></input>
-                </lable>
+                </label>
                 <br />
                 <label>
                     Price:

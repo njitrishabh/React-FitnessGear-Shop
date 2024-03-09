@@ -5,6 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import { table } from 'console';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -24,7 +25,7 @@ const connection = mysql.createConnection(config);
 
 connection.connect((err) => {
     if (err) {
-        console.log('Error connecting', err.message)
+        console.log('Error connecting')
     } else {
         console.log('Connected');
     }
@@ -34,15 +35,11 @@ connection.connect((err) => {
 app.get('/search-products', (req, res) => {
     const { productName, retailerName, brandName, minPrice, maxPrice } = req.query;
 
-    // Build SQL query based on filters
-    let sql = `
-        SELECT DISTINCT products.*, prices.price, brands.name as brand, retailers.name as retailer
-        FROM products
-        LEFT JOIN prices ON products.product_id = prices.product_id
-        LEFT JOIN retailers ON prices.retailer_id = retailers.retailer_id
-        LEFT JOIN brands ON prices.brand_id = brands.brand_id
-        WHERE 1 = 1
-    `;
+    let sql = `Select DISTINCT products.*, prices.price, brands.name as brand, retailers.name as retailer from products
+				LEFT JOIN prices ON products.product_id = prices.product_id
+				LEFT JOIN retailers ON prices.retailer_id = retailers.retailer_id
+				LEFT JOIN brands ON prices.brand_id = brands.brand_id
+				where 1 = 1`;
 
     if (productName) {
         sql += ` AND products.name LIKE '%${productName}%'`;
@@ -64,33 +61,28 @@ app.get('/search-products', (req, res) => {
         sql += ` AND prices.price <= ${maxPrice}`;
     }
 
-    // Execute the SQL query
     connection.query(sql, (err, results) => {
         if (err) {
-            console.error('Error executing query:', err);
+            console.log('Error from database', err);
             res.status(500).json({ error: 'Internal Server Error' });
             return;
         }
-
         res.json(results);
     });
 });
 
 app.get('/product-names', (req, res) => {
 
-    let sql = `
-        SELECT products.name as label
-        FROM products`;
-
+    let sql = ` SELECT products.name as label from products `;
     connection.query(sql, (err, results) => {
         if (err) {
-            console.error('Error executing query:', err);
+            console.log('Error from database', err);
             res.status(500).json({ error: 'Internal Server Error' });
             return;
         }
-
         res.json(results);
     });
+
 });
 
 app.post('/api/submit-form', async (req, res) => {
@@ -101,9 +93,9 @@ app.post('/api/submit-form', async (req, res) => {
             `Insert into brands (name) values ('${formData.brandName}');`,
             `Insert into products (name, details, howToUse, image) values ('${formData.productName}', '${formData.productDetails}', '${formData.productHowtouse}', '${formData.productImage}');`,
             `INSERT into prices (price, product_id, brand_id, retailer_id) values ( '${formData.price}',
-			(SELECT products.product_id from products where products.name LIKE '%${formData.productName}%'),
-			(SELECT brands.brand_id from brands where brands.name LIKE '%${formData.brandName}%'),
-			(SELECT retailers.retailer_id from retailers where retailers.name LIKE '%${formData.retailerName}%')
+			(SELECT products.product_id from products where products.name = '${formData.productName}'),
+			(SELECT brands.brand_id from brands where brands.name = '${formData.brandName}'),
+			(SELECT retailers.retailer_id from retailers where retailers.name = '${formData.retailerName}')
 			);`
         ]
 
@@ -119,6 +111,5 @@ app.post('/api/submit-form', async (req, res) => {
     }
 
 });
-
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
