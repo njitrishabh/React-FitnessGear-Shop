@@ -98,3 +98,11 @@ INSERT into prices (price, product_id, brand_id, retailer_id) values
 ('15.00', 5, 13, 5),
 ('25.00', 5, 14, 5);
 
+
+Create Table users (
+    user_id INT NOT NULL AUTO_INCREMENT Primary Key,
+    username varchar(255),
+    email varchar(255),
+    password varchar(255),
+    loggedIn BOOLEAN
+);

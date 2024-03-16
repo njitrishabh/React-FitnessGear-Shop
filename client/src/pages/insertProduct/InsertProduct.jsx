@@ -83,4 +83,4 @@ const InsertProduct = () => {
     )
 };
 
-export default InsertProduct;
+export default InsertProduct; 

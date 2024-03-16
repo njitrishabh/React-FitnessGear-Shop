@@ -93,9 +93,9 @@ app.post('/api/submit-form', async (req, res) => {
             `Insert into brands (name) values ('${formData.brandName}');`,
             `Insert into products (name, details, howToUse, image) values ('${formData.productName}', '${formData.productDetails}', '${formData.productHowtouse}', '${formData.productImage}');`,
             `INSERT into prices (price, product_id, brand_id, retailer_id) values ( '${formData.price}',
-			(SELECT products.product_id from products where products.name = '${formData.productName}'),
-			(SELECT brands.brand_id from brands where brands.name = '${formData.brandName}'),
-			(SELECT retailers.retailer_id from retailers where retailers.name = '${formData.retailerName}')
+			(SELECT products.product_id from products where products.name = '${formData.productName}' LIMIT 1),
+			(SELECT brands.brand_id from brands where brands.name = '${formData.brandName}' LIMIT 1),
+			(SELECT retailers.retailer_id from retailers where retailers.name = '${formData.retailerName}' LIMIT 1)
 			);`
         ]
 
@@ -111,5 +111,59 @@ app.post('/api/submit-form', async (req, res) => {
     }
 
 });
+
+//user Login API's
+app.post('/api/register', async (req, res) => {
+
+    const formData = req.body;
+    try {
+        let statement = `Insert into users (username, email, password) values ('${formData.username}', '${formData.email}', '${formData.password}')`;
+        await connection.execute(statement);
+
+        res.status(200).json({ success: true, message: 'Form submitted successfully!' });
+    } catch (error) {
+        console.log('Error:', error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+
+});
+
+app.post('/api/login', (req, res) => {
+    const formData = req.body;
+    try {
+        let statement = `Select * from users where email = '${formData.email}' AND password = '${formData.password}'`;
+
+        connection.query(statement, (err, results) => {
+            if (err) {
+                console.log('Error from database', err);
+                res.status(500).json({ error: 'Internal Server Error' });
+                return;
+            }
+
+            else {
+                if (results.length === 0) {
+                    res.status(422).send('User login credentials not found');
+                } else {
+                    res.status(200).json({
+                        success: true, message: 'Form submitted successfully!',
+                        user: { username: results[0].username, email: results[0].email, loggedIn: results[0].loggedIn }
+                    });
+                }
+            }
+        });
+
+    } catch (error) {
+        console.log('Error:', error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+
+});
+
+app.get('/api/logout', (req, res) => {
+    // Implement logout logic.
+    res.status(200).json({ success: true, message: 'Form submitted successfully!' });
+});
+
+
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

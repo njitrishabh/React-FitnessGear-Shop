@@ -1,24 +1,22 @@
-import React from "react";
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link } from "react-router-dom";
 import './styles.css';
 
 const SearchResultPage = ({ searchOutput, showContent }) => {
-
     return (
         <div className='search-results-child'>
             {showContent && Object.keys(searchOutput).length === 0 ? (
                 <div>
-                    <h3>Item Not Found.</h3>
+                    <h3>Item Not Found</h3>
                     <Link to="/insert">
-                        <button className="insertItem">Insert Item</button>
+                        <button className='insertItem'>Insert Item</button>
                     </Link>
                 </div>
-
             ) : (
-                < div className='flex-results'>
+                <div className='flex-results'>
                     {
                         searchOutput.map((result) => (
-                            <div className="tile">
+                            <div className='tile'>
                                 <Link to={'/product'}
                                     state={result}>
                                     <img className='image' src={result.image} width="500" height="500"></img>
