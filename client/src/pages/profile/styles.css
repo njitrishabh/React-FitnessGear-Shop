@@ -1,0 +1,4 @@
+.flex-results .tile {
+    display: flex;
+    flex-direction: column;
+}

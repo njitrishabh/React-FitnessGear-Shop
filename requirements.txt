@@ -42,19 +42,28 @@ price filter: would be a range selction bar
 
 7. user login-logout
 
-8. a. To accept user name and email as input and only then set below.
-    b. Create a Deals table in the db, add user-emails in a column: and write a scheduler to send emails with a new content from deals table in the db.
-    c. opt-out of email feature: check if this email addres
+8. Firebase user registration & login.
 
-9. user can mark a product as favorite.
+9. after user successful login, we have to display last 5 added products (new arrivals).
+
+10. Error catching: user login/registration form validations, adding product form validations check, mandatory fields in the form, and confirmation success messages on forms.
+
+11. Fixing up the UI (could use Material UI).
+
+12. 
+a. Email subscription feature (sends out newly added products, last 5 rows from products database). 
+    write a scheduler to send emails.
+b. opt-out of email feature: check if this email addres
+
+13. user can mark a product as favorite.
 
 
 #2 - #6 these features are available for non-loggedIn users
-#7 - #9 is only for logged in users
+#7 - #11 is only for logged in users
 
 Feb 26 : Sprint 1, #1 - #4
 Mar 15: sprint 2, #5 - #7
-Apr 7: sprint 3, #8 , #9
+Apr 7: sprint 3, #8 , #12
 
 1st table for Product name, Description, image and how to use
 2nd table for Product prices
@@ -96,3 +105,6 @@ npm start
 npm run test
 npx cypress run
 npm install axios
+
+Gmail: shopfitness2026@gmail.com
+Password: msci342!

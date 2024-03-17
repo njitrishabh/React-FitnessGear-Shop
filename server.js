@@ -85,6 +85,20 @@ app.get('/product-names', (req, res) => {
 
 });
 
+app.get('/products', (req, res) => {
+
+    let sql = ` SELECT  * from products `;
+    connection.query(sql, (err, results) => {
+        if (err) {
+            console.log('Error from database', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+            return;
+        }
+        res.json(results);
+    });
+
+});
+
 app.post('/api/submit-form', async (req, res) => {
     const formData = req.body;
     try {

@@ -1,4 +1,4 @@
-import { useRoutes, Route, Switch, Redirect, Link, useNavigate } from "react-router-dom";
+import { useRoutes, Route, Switch, Redirect, Link, useNavigate, Navigate } from "react-router-dom";
 import Home from './pages/home/Home';
 import NoMatch from './components/NoMatch';
 import ProductDetail from './pages/productDetail/ProductDetail';
@@ -6,35 +6,24 @@ import InsertProduct from './pages/insertProduct/InsertProduct';
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import React, { useState } from 'react';
-import axios from 'axios';
 import Profile from "./pages/profile/Profile";
+import firebase from './utils/firebase';
 
 export default function Router() {
 
-    const [user, setUser] = useState(null);
     const navigate = useNavigate();
+    const [loggedIn, setLoggedIn] = useState(false);
+
 
     const handleLogin = async (email, password) => {
         try {
-            const response = await axios.post('http://localhost:8080/api/login', {
-                email,
-                password
-            });
+            await firebase.auth().signInWithEmailAndPassword(email, password);
+            setLoggedIn(true);
+            navigate('/profile');
 
-            if (response.data.success) {
-                setUser(response.data.user);
-                navigate('/profile');
-            } else {
-                console.log(response.data.message);
-            }
         } catch (error) {
             console.log('Login failed:', error);
         }
-    }
-
-    const handleLogout = () => {
-        setUser(null);
-        navigate('/login');
     }
 
     let element = useRoutes([
@@ -45,8 +34,7 @@ export default function Router() {
         { path: '/register', element: <Register /> },
         { path: '/login', element: <Login onLogin={handleLogin} /> },
         {
-            path: '/profile',
-            element: user ? <Profile user={user} onLogout={handleLogout} /> : <navigate to='/login' />
+            path: '/profile', element: <Profile />
         },
     ]);
     return element;

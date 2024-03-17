@@ -1,27 +1,25 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import firebase from '../../utils/firebase';
 import { Link } from 'react-router-dom';
 
 const Register = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [registered, setRegistered] = useState('');
 
     const handleRegistration = async () => {
         try {
-            const response = await axios.post('http://localhost:8080/api/register', {
-                username,
-                email,
-                password
+            await firebase.auth().createUserWithEmailAndPassword(email, password);
+
+            await firebase.auth().currentUser.updateProfile({
+                displayName: username
             });
 
-            if (response.data.success) {
-                alert('Registration succesful');
-                setRegistered('Registration successful');
-            } else {
-                console.log(response.data.message);
-            }
+            alert("Registration successful");
+            setEmail('');
+            setUsername('');
+            setPassword('');
+
         } catch (error) {
             console.log('Registration failed:', error);
         }
@@ -43,7 +41,6 @@ const Register = () => {
             <p>
                 Already have an account? <Link to="/login">Login</Link>
             </p>
-            <p>{registered}</p>
         </div>
     );
 }

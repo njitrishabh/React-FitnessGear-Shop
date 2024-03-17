@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import firebase from '../../utils/firebase';
 import { Link } from 'react-router-dom';
 
 const Login = ({ onLogin }) => {
