@@ -1,18 +1,31 @@
 import React, { useState } from 'react';
-import firebase from '../../utils/firebase';
-import { Link } from 'react-router-dom';
+import { auth } from '../../utils/firebase';
+import { Link, useNavigate } from 'react-router-dom';
 
-const Login = ({ onLogin }) => {
+const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+
+    const navigate = useNavigate();
 
     const handleLogin = async () => {
-        onLogin(email, password);
+        try {
+            if (!email || !password) {
+                setError('Please fill in all fields.');
+                return;
+            }
+            await auth.signInWithEmailAndPassword(email, password);
+            navigate('/profile');
+        } catch (error) {
+            setError(error.message);
+        }
     }
 
     return (
         <div>
             <h2>User Login</h2>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
             <label>Email:</label>
             <input type='email' value={email} onChange={(e) => setEmail(e.target.value)}></input>
             <br></br>

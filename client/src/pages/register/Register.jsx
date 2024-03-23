@@ -6,9 +6,18 @@ const Register = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
     const handleRegistration = async () => {
         try {
+            if (!username || !email || !password) {
+                setError('Please fill in all fields');
+                return
+            }
+            if (password.length < 6) {
+                setError('Passsword must be at least 6 characters long.')
+            }
+
             await firebase.auth().createUserWithEmailAndPassword(email, password);
 
             await firebase.auth().currentUser.updateProfile({
@@ -19,15 +28,17 @@ const Register = () => {
             setEmail('');
             setUsername('');
             setPassword('');
+            setError('');
 
         } catch (error) {
-            console.log('Registration failed:', error);
+            setError(error.message);
         }
     }
 
     return (
         <div>
             <h2>User Registration</h2>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
             <label htmlFor="username">Full Name:</label>
             <input id='username' name='username' type='text' value={username} onChange={(e) => setUsername(e.target.value)}></input>
             <br></br>

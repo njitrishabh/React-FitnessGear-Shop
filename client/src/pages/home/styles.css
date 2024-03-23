@@ -1,6 +1,6 @@
-body {
-    margin: 30px;
-}
+/* body {
+    margin: 30px !important;
+} */
 
 .search-filters {
     display: flex;
@@ -18,7 +18,7 @@ body {
 }
 
 .tile {
-    border: 1px solid #f5f5f5;
+    border: 1px solid #f5f5ff;
     margin: 30px;
     padding: 20px;
 }
