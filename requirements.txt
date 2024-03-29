@@ -46,20 +46,25 @@ price filter: would be a range selction bar
 
 9. after user successful login, we have to display last 5 added products (new arrivals).
 
-10. Error catching: user login/registration form validations, adding product form validations check, mandatory fields in the form, and confirmation success messages on forms.
+10. Error catching: user login/registration form validations, adding product form validations check, 
+mandatory fields in the form, and confirmation success messages on forms.
 
-11. Fixing up the UI (could use Material UI).
+11. Fixing up the UI: navigation bar, all the forms UX.
 
-12. 
-a. Email subscription feature (sends out newly added products, last 5 rows from products database). 
+12. User can mark a product as favorite with a heart icon. This favorite item should appear on the favorites page.
+
+13. Fitness APP page designing.
+
+14. 
+a. Email subscription feature for a loggenin user (sends out newly added products, last 5 rows from products database). 
     write a scheduler to send emails.
 b. opt-out of email feature: check if this email addres
 
-13. user can mark a product as favorite.
+
 
 
 #2 - #6 these features are available for non-loggedIn users
-#7 - #11 is only for logged in users
+#7 - #10, #14 is only for logged in users
 
 Feb 26 : Sprint 1, #1 - #4
 Mar 15: sprint 2, #5 - #7
@@ -105,6 +110,7 @@ npm start
 npm run test
 npx cypress run
 npm install axios
+npm install --save @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-regular-svg-icons
 
 Gmail: shopfitness2026@gmail.com
 Password: msci342!

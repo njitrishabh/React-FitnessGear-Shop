@@ -119,8 +119,9 @@ const InsertProduct = () => {
     }
 
     return (
-        <div className="flex-parent">
-            <form onSubmit={handleSubmit}>
+        <div className="addProduct-flex-parent">
+            <h2>Add Product</h2>
+            <form className="addProduct-form" onSubmit={handleSubmit}>
                 <label>Product Name:
                     <input type="text" name="productName" value={formData.productName} onChange={handleChange}></input>
                     {errors.productName && <span className="error" style={{ color: 'red' }}>&nbsp;{errors.productName}</span>}

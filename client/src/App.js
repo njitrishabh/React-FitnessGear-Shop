@@ -10,12 +10,14 @@ import Profile from "./pages/profile/Profile";
 import Favorites from './pages/favorites/Favorites';
 import Landing from './pages/landing/Landing';
 import './App.css';
+import { MyContextProvider } from './components/MyContext';
 
 
 const App = () => {
 
     const [activeIndex, setActiveIndex] = useState(0);
     const activeRef = useRef(null);
+    const [sharedState, setSharedState] = useState('');
 
     useEffect(() => {
         if (activeRef.current) {
@@ -32,7 +34,7 @@ const App = () => {
     }
 
     return (
-        <>
+        <MyContextProvider value={{ sharedState, setSharedState }}>
             <BrowserRouter>
                 <div>
                     <div className='container-nav'>
@@ -70,7 +72,7 @@ const App = () => {
                     </Routes>
                 </div>
             </BrowserRouter>
-        </>
+        </MyContextProvider>
     );
 };
 

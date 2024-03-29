@@ -76,7 +76,6 @@ const Home = () => {
     }
 
 
-
     return (
         <>
             <div className="search-filters">
