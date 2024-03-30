@@ -10,14 +10,13 @@ import Profile from "./pages/profile/Profile";
 import Favorites from './pages/favorites/Favorites';
 import Landing from './pages/landing/Landing';
 import './App.css';
-import { MyContextProvider } from './components/MyContext';
+import { ProductProvider } from './components/ProductContext';
 
 
 const App = () => {
 
     const [activeIndex, setActiveIndex] = useState(0);
     const activeRef = useRef(null);
-    const [sharedState, setSharedState] = useState('');
 
     useEffect(() => {
         if (activeRef.current) {
@@ -34,8 +33,8 @@ const App = () => {
     }
 
     return (
-        <MyContextProvider value={{ sharedState, setSharedState }}>
-            <BrowserRouter>
+        <BrowserRouter>
+            <ProductProvider>
                 <div>
                     <div className='container-nav'>
                         <nav className='navbar'>
@@ -71,8 +70,8 @@ const App = () => {
                         <Route path="/profile" element={<Profile />} />
                     </Routes>
                 </div>
-            </BrowserRouter>
-        </MyContextProvider>
+            </ProductProvider>
+        </BrowserRouter>
     );
 };
 
