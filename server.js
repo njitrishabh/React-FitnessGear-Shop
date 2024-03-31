@@ -6,9 +6,25 @@ import { fileURLToPath } from 'url';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import { table } from 'console';
+import admin from 'firebase-admin';
+import nodemailer from 'nodemailer';
+import serviceAccount from './serviceAccountKey.json' assert {type: 'json'};
+import cron from 'node-cron';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
+});
+const db = admin.firestore();
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'emailaddress@gmail.com',
+        pass: '',
+    }
+});
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -30,6 +46,76 @@ connection.connect((err) => {
         console.log('Connected');
     }
 })
+
+async function sendScheduledEmail() {
+    try {
+
+        let sql = ` SELECT * from products `;
+        connection.query(sql, (err, results) => {
+            if (err) {
+                console.log('Error from database', err);
+                return;
+            }
+            const last5Products = results.slice(Math.max(results.length - 5, 0));
+            const products = JSON.parse(JSON.stringify(last5Products));
+
+            let emailBody = `
+				<html>
+					<body>
+						<h2> New Arrivals</h2> 
+			`;
+
+            products.forEach(product => {
+                emailBody += `
+				<div className='tile'>
+					<img alt='productImage' className='image' src=${product.image} width="300" height="300"></img>
+					<div className='productname'><b>${product.name}</b></div>
+					<div className='productname'><b>${product.details}</b></div>
+				</div>
+				`;
+            });
+
+            emailBody += `
+				</body>
+				</html>
+			`;
+
+            const firestoreQuery = db.collection('subscriptions').where('subscribed', '==', true);
+            firestoreQuery.get()
+                .then(subscriptionSnapshot => {
+                    subscriptionSnapshot.forEach(doc => {
+                        const email = doc.id;
+                        const mailOptions = {
+                            from: 'shopfitness2026@gmail.com',
+                            to: email,
+                            subject: 'Latest Products from FitnessApp',
+                            html: emailBody,
+                        };
+                        transporter.sendMail(mailOptions, (emailError, info) => {
+                            if (emailError) {
+                                console.log('Error sending email:', emailError);
+                            }
+                            else {
+                                console.log('Email sent:', info.response);
+                            }
+                        });
+                    });
+                })
+                .catch(firestoreError => {
+                    console.error('Error fetching Firestore documents:', firestoreError);
+                });
+        });
+
+    } catch (error) {
+        console.error('Error sending emails:', error);
+    }
+};
+
+cron.schedule('*/10 * * * * *', () => {
+    console.log('Schedule job running...');
+    sendScheduledEmail();
+});
+
 
 // API to Fetch the products based on the search filter query: /search-products.
 app.get('/search-products', (req, res) => {

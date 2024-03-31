@@ -60,6 +60,8 @@ a. Email subscription feature for a loggenin user (sends out newly added product
     write a scheduler to send emails.
 b. opt-out of email feature: check if this email addres
 
+15. Entity Relationship diagram, Unit test, Cypress test.
+
 
 
 
@@ -104,6 +106,11 @@ npm i identity-obj-proxy
 npm i whatwg-fetch
 npm install --save-dev jest-fetch-mock
 npm install --save @testing-library/user-event msw
+npm install firebase-functions
+npm install nodemailer
+npm install firebase-admin
+npm install node-cron
+
 
 node server.js
 npm start
@@ -112,5 +119,8 @@ npx cypress run
 npm install axios
 npm install --save @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-regular-svg-icons
 
-Gmail: shopfitness2026@gmail.com
-Password: msci342!
+
+to run cron every 10 seconds: '*/10 * * * * *'
+to run cron every 24 hours: '0 0 */24 * * *'
+to run cron every x minutes: '*/x * * * *'
+to run cron at 8am on monday: '0 0 8 * * 1'

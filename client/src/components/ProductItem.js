@@ -32,6 +32,11 @@ const ProductItem = ({ product }) => {
 
     return (
         <div className='tile' key={product.product_id}>
+            <div className="favorite">
+                <span onClick={toggleFavorite}>
+                    <FontAwesomeIcon icon={faHeart} style={{ color: product.favorite ? 'red' : 'gray' }} />
+                </span>
+            </div>
             <Link to={'/product'}
                 state={product}>
                 <img alt='productImage' className='image' src={product.image} width="500" height="500"></img>
@@ -40,11 +45,7 @@ const ProductItem = ({ product }) => {
             <div className='productname'><b>{product.name}</b></div>
             <div className='brand'><b>Brand: {product.brand}</b></div>
             <div className='retailer'><b>Retailer: {product.retailer}</b></div>
-            <div className="favorite">
-                <span onClick={toggleFavorite}>
-                    <FontAwesomeIcon icon={faHeart} style={{ color: product.favorite ? 'red' : 'gray' }} />
-                </span>
-            </div>
+
         </div>
     );
 };
