@@ -3,6 +3,15 @@ import '@testing-library/jest-dom';
 import React from 'react';
 import Home from '../pages/home/Home';
 import userEvent from '@testing-library/user-event';
+import { ProductContext } from '../components/ProductContext';
+
+jest.mock('../components/ProductContext', () => ({
+    useProductContext: () => ({
+        products: [],
+        setProducts: jest.fn(),
+    }),
+}));
+
 // import { http } from 'msw';
 // import { setupServer } from 'msw/node';
 

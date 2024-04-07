@@ -5,7 +5,6 @@ import ProductItem from '../../components/ProductItem';
 const Favorites = () => {
 
     const { favorites } = useProductContext();
-    console.log(favorites, "favorite page");
 
     return (
         <>

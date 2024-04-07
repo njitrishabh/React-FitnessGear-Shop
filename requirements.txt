@@ -118,6 +118,8 @@ npm run test
 npx cypress run
 npm install axios
 npm install --save @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-regular-svg-icons
+npm install --save-dev @babel/plugin-syntax-import-attributes
+
 
 
 to run cron every 10 seconds: '*/10 * * * * *'

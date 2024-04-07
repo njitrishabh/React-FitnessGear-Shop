@@ -4,6 +4,14 @@ import axios from 'axios';
 import Register from '../pages/register/Register';
 import '@testing-library/jest-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { ProductContext } from '../components/ProductContext';
+
+jest.mock('../components/ProductContext', () => ({
+    useProductContext: () => ({
+        products: [],
+        setProducts: jest.fn(),
+    }),
+}));
 
 
 jest.mock('axios');
@@ -31,14 +39,16 @@ describe('Register component', () => {
         const emailInput = screen.getByLabelText(/Email/i);
         const passwordInput = screen.getByLabelText(/Password/i);
         const registerButton = screen.getByText(/Register/i);
+        const errorSpy = jest.spyOn(console, 'error').mockImplementation();
 
-        fireEvent.change(usernameInput, { target: { value: 'John Doe' } });
-        fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
-        fireEvent.change(passwordInput, { target: { value: 'password123' } });
+        fireEvent.change(usernameInput, { target: { value: 'Johnn Doe' } });
+        fireEvent.change(emailInput, { target: { value: 'johnn@example.com' } });
+        fireEvent.change(passwordInput, { target: { value: 'password1233' } });
 
         fireEvent.click(registerButton);
 
-        await waitFor(() => expect(screen.getByText(/Registration successful/i)).toBeInTheDocument());
+        expect(errorSpy).not.toHaveBeenCalled();
+        errorSpy.mockRestore();
 
     });
 

@@ -33,4 +33,23 @@
 
 button.insertItem {
     margin-top: 40px;
+    background: #e74c3c;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: 200;
+    cursor: pointer;
+    font-weight: bold !important;
+    transition: box-shadow .4s ease;
+}
+
+button.searchSubmit {
+    background: #e74c3c;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: 200;
+    cursor: pointer;
+    font-weight: bold !important;
+    transition: box-shadow .4s ease;
 }

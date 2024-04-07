@@ -1,6 +1,6 @@
 describe('Home Page Test', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000');
+    cy.visit('http://localhost:3000/search');
   });
 
   it('render the component', () => {

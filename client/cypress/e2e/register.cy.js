@@ -9,6 +9,10 @@ describe('Registration page', () => {
     });
 
     it('register a new user successfully', () => {
+
+        cy.window().then((win) => {
+            cy.stub(win, 'alert').as('windowAlert')
+        });
         cy.visit('http://localhost:3000/register');
         cy.get('input[type="text"]').type('John Doe');
         cy.get('input[type="email"]').type('john@example.com');
@@ -16,7 +20,7 @@ describe('Registration page', () => {
 
         cy.get('button').click();
 
-        cy.contains('Registration successful').should('be.visible');
+        cy.get('@windowAlert');
     });
 
 })

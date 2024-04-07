@@ -63,6 +63,7 @@ const Profile = () => {
         try {
             await db.collection('subscriptions').doc(email).set({ subscribed: true });
             setSubscribed(true);
+            alert("You have subscribed to receive new arrivals every Monday 8am.")
         } catch (error) {
             console.error('Error:', error);
         }
@@ -75,6 +76,7 @@ const Profile = () => {
         try {
             await db.collection('subscriptions').doc(email).delete();
             setSubscribed(false);
+            alert("You have unubscribed from email notifications.")
         } catch (error) {
             console.error('Error:', error);
         }
@@ -88,15 +90,15 @@ const Profile = () => {
         <div>
             {user ? (
                 <div>
-                    < button onClick={handleLogout}>Logout</button>
-                    <div>
+                    <div className='loggedin-conatiner'>
                         {
                             !subscribed ? (
-                                <button onClick={handleSubscription}>Subscribe</button>
+                                <button className='subscribed-button' onClick={handleSubscription}>Subscribe</button>
                             ) : (
-                                <button onClick={handleOptOut}>Unsubscribe</button>
+                                <button className='unsubscribed-button' onClick={handleOptOut}>Unsubscribe</button>
                             )
                         }
+                        <button className='logout' onClick={handleLogout}>Logout</button>
                     </div>
                     <div className='flex-results'>
                         {

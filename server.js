@@ -21,7 +21,7 @@ const db = admin.firestore();
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'emailaddress@gmail.com',
+        user: '',
         pass: '',
     }
 });
@@ -112,8 +112,8 @@ async function sendScheduledEmail() {
 };
 
 cron.schedule('*/10 * * * * *', () => {
-    console.log('Schedule job running...');
-    sendScheduledEmail();
+    // console.log('Schedule job running...');
+    // sendScheduledEmail();
 });
 
 

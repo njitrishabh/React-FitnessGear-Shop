@@ -11,7 +11,6 @@ const SearchResultPage = ({ searchOutput, showContent }) => {
     useEffect(() => {
         const storedProducts = JSON.parse(localStorage.getItem('products')) || [];
         setProducts(storedProducts);
-        console.log([products, "products"]);
     }, [setProducts]);
 
     return (

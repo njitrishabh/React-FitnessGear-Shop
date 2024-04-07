@@ -2,3 +2,26 @@
     display: flex;
     flex-direction: column;
 }
+
+.loggedin-conatiner {
+    display: flex;
+    justify-content: end;
+}
+
+button.subscribed-button {
+    margin-right: 20px;
+}
+
+button.unsubscribed-button {
+    margin-right: 20px;
+}
+
+.loggedin-conatiner button {
+    background: #e74c3c;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: 200;
+    cursor: pointer;
+    transition: box-shadow .4s ease;
+}
